@@ -1,0 +1,1 @@
+Flutter앱 출시전 반드시 확인해야 할 부분!! Mediaquery 사용 에러 해결해주러 와써요.(https://youtu.be/TEIyMX1us3U)
