@@ -105,21 +105,25 @@ class MyPage extends StatelessWidget {
       fit: StackFit.expand,
       alignment: FractionalOffset.center,
       children: [
-        Transform(
-          transform: pvMatrix,
-          alignment: FractionalOffset.center,
-          child: Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 11.0,
-                spreadRadius: 4.0,
-                offset:
-                    const Offset(13.0, 35.0), // shadow direction: bottom right
-              )
-            ]),
-            child: Image.asset("assets/images/image_${number.toInt() + 1}.jpg",
-                fit: BoxFit.fill),
+        Transform.translate(
+          offset: const Offset(0.0, -47.5),
+          child: Transform(
+            transform: pvMatrix,
+            alignment: FractionalOffset.center,
+            child: Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  blurRadius: 11.0,
+                  spreadRadius: 4.0,
+                  offset: const Offset(
+                      13.0, 35.0), // shadow direction: bottom right
+                )
+              ]),
+              child: Image.asset(
+                  "assets/images/image_${number.toInt() + 1}.jpg",
+                  fit: BoxFit.fill),
+            ),
           ),
         ),
       ],
