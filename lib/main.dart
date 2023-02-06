@@ -1,168 +1,148 @@
 import 'package:flutter/material.dart';
+import 'package:secondlife_mobile/PageViewHolder.dart';
 import 'package:provider/provider.dart';
-import 'package:secondlife_mobile/model.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider(
-          create: (context) => PlayerModel(), child: const PlayerApp()),
-    ),
-  );
+  runApp(const MyApp());
 }
 
-class PlayerApp extends StatefulWidget {
-  const PlayerApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Perspective PageView',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<PlayerApp> createState() => _PlayerAppState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _PlayerAppState extends State<PlayerApp> with TickerProviderStateMixin {
-  //AnimationController? _controller;
-  //Animation? _waveAnim;
-  //Animation? _waveConstAmpAnim;
-  late PlayerModel model;
-/*
+class _MyHomePageState extends State<MyHomePage> {
+  late PageViewHolder holder;
+  late PageController _controller;
+  double fraction =
+      0.57; // By using this fraction, we're telling the PageView to show the 50% of the previous and the next page area along with the main page
+
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 20))
-          ..addListener(() => setState(() {}));
-    _waveAnim =
-        Tween<double>(begin: 1, end: 1).animate(_controller! /*null safe*/);
-    _waveConstAmpAnim = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
-        curve: Curves.easeInSine, parent: _controller! /*null safe*/));
-    _controller!.forward(); //null safe 6:32
-  }
-*/
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-    model = Provider.of<PlayerModel>(context);
-    return Scaffold(
-      backgroundColor: const Color(0xFF7a5ebb),
-      body: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 210,
-            child: bulidMusicList(),
-          ),
-          Positioned(
-            height: height,
-            width: width,
-            child: Material(
-              elevation: 16,
-              color: const Color(0xFFd6dde5), //Background Color
-              borderRadius: BorderRadius.circular(20),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30.0,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 90,
-                    ),
-                    const Text(
-                      'Music title',
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const Text(
-                      'Music artist',
-                    ),
-                    const SizedBox(
-                      height: 75,
-                    ),
-                    buildRecordPlayer(),
-                    const SizedBox(
-                      height: 60,
-                    ),
-                    Row(
-                      children: const <Widget>[
-                        Text('time'),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        /*buildWave(width),*/
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text('end'),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    holder = PageViewHolder(value: 2.0);
+    _controller = PageController(initialPage: 2, viewportFraction: fraction);
+    _controller.addListener(() {
+      holder.setValue(_controller.page);
+    });
   }
 
-  Widget buildRecordPlayer() {
-    return Container(
-      height: 270,
-      width: 270,
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/vinyl.png'),
-          fit: BoxFit.fitHeight,
-          colorFilter: ColorFilter.mode(
-            Colors.blue,
-            BlendMode.color,
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+      appBar: AppBar(
+        title: const Text("Perspective PageView"),
+      ),
+      body: Container(
+        child: Center(
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: ChangeNotifierProvider<PageViewHolder>.value(
+              value: holder,
+              child: PageView.builder(
+                  controller: _controller,
+                  itemCount: 4,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return MyPage(
+                      number: index.toDouble(),
+                      fraction: fraction,
+                    );
+                  }),
+            ),
           ),
         ),
-        shape: BoxShape.circle,
       ),
-      child: ClipOval(
-        child: Image.asset(
-          'assets/images/SL.png',
-          height: 165,
-          width: 165,
-          fit: BoxFit.fill,
-        ),
-      ),
-    );
+    ));
   }
 }
 
-ListView bulidMusicList() {
-  return ListView.separated(
-    shrinkWrap: true,
-    separatorBuilder: (_, __) => const Divider(
-      thickness: 1,
-      height: 0,
-      color: Colors.grey,
-    ),
-    itemCount: model.musicList.length,
-    itemBuilder: (context, index) {
-      bool isIndexCurrentTrack = false;
-      if (index == model.currentTrack) isIndexCurrentTrack = true;
+class MyPage extends StatelessWidget {
+  final number;
+  final double? fraction;
 
-      return Container(
-        color: const Color(0xff6a52a4),
-        child: GestureDetector(
-          onTap: () {},
-          child: ListTile(
-            leading: const Icon(Icons.bubble_chart),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Text(model.musicList[index].name),
-            ),
-            subtitle: Text(model.musicList[index].artistName),
-            trailing: Text(
-                model.musicList[index].duration.toString().substring(3, 7)),
+  const MyPage({super.key, this.number, this.fraction});
+
+  @override
+  Widget build(BuildContext context) {
+    double? value = Provider.of<PageViewHolder>(context).value;
+    double diff = (number - value);
+    // diff is negative = left page
+    // diff is 0 = current page
+    // diff is positive = next page
+
+    //Matrix for Elements
+    final Matrix4 pvMatrix = Matrix4.identity()
+      ..setEntry(3, 2, 1 / 0.9) //Increasing Scale by 90%
+      ..setEntry(1, 1, fraction!) //Changing Scale Along Y Axis
+      ..setEntry(3, 0, 0.004 * -diff); //Changing Perspective Along X Axis
+
+    final Matrix4 shadowMatrix = Matrix4.identity()
+      ..setEntry(3, 3, 1 / 1.6) //Increasing Scale by 60%
+      ..setEntry(3, 1, -0.004) //Changing Scale Along Y Axis
+      ..setEntry(3, 0, 0.002 * diff) //Changing Perspective along X Axis
+      ..rotateX(1.309); //Rotating Shadow along X Axis
+
+    return Stack(
+      fit: StackFit.expand,
+      alignment: FractionalOffset.center,
+      children: [
+        Transform(
+          transform: pvMatrix,
+          alignment: FractionalOffset.center,
+          child: Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                blurRadius: 11.0,
+                spreadRadius: 4.0,
+                offset:
+                    const Offset(13.0, 35.0), // shadow direction: bottom right
+              )
+            ]),
+            child: Image.asset("assets/images/image_${number.toInt() + 1}.jpg",
+                fit: BoxFit.fill),
           ),
         ),
-      );
-    },
-  );
+      ],
+      /*children: const <Widget>[
+        if (diff <= 1.0 && diff >= -1.0) ...[
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 100),
+            opacity: 1 - diff.abs(),
+            child: Transform(
+              transform: shadowMatrix,
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                decoration: const BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10.0,
+                      spreadRadius: 1.0)
+                ]),
+              ),
+            ),
+          ),
+        ],
+      ],*/
+    );
+  }
 }
