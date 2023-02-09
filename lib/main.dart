@@ -10,17 +10,24 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      children: [
-        MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Perspective PageView',
-          theme: ThemeData(
-            useMaterial3: true,
-          ),
-          home: const MyHomePage(),
-        ),
-      ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Perspective PageView',
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      bottomNavigationBar: BNavigator(),
     );
   }
 }

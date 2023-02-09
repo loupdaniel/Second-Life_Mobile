@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:secondlife_mobile/PageViewHolder.dart';
 import 'package:provider/provider.dart';
-import 'package:secondlife_mobile/screens/current_music.dart';
-import 'package:secondlife_mobile/screens/twitch_live.dart';
-import 'package:secondlife_mobile/screens/settings.dart';
-import 'package:secondlife_mobile/screens/my_playlist.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,16 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentTab = 0;
-  final List<Widget> screens = [
-    const MyPlaylist(),
-    const Settings(),
-    const TwitchLive(),
-    const CurrentMusic(),
-  ];
-
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const TwitchLive(); //????????????????
 
   late PageViewHolder holder;
   late PageController _controller;
@@ -49,13 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text('AppBar'),
           leading: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.home),
+            icon: const Icon(Icons.search_outlined),
           ),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.call),
-            ),
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.more_vert),
