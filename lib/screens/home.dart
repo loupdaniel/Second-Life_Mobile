@@ -27,11 +27,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  int index = 1;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 223, 234, 244),
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           centerTitle: true,
           title: const Text('AppBar'),
           leading: IconButton(
