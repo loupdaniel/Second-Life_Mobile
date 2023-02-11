@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           centerTitle: true,
           title: const Text('AppBar'),
-          leading: IconButton(
+          /*leading: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.search_outlined),
           ),
@@ -47,16 +47,17 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
               icon: const Icon(Icons.more_vert),
             ),
-          ],
+          ],*/
         ),
         body: SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 92.5,
+                  height: 70,
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 35),
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 35),
+                const SizedBox(height: 15),
                 Container(
                   child: Center(
                     child: AspectRatio(
@@ -89,15 +90,120 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 2.0),
+                //const SizedBox(height: 2.0),
                 ////Your Playlist of the week text
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 35),
-                  child: Text(
-                    'Playlist of the week',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
+                Transform.translate(
+                  offset: const Offset(0, -70),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    child: Text(
+                      'Playlist of the week',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                Transform.translate(
+                  offset: const Offset(0, -40),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 150,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    child: SizedBox(
+                                      height: 160.0,
+                                      width: 200.0,
+                                      child: Image.asset(
+                                        'assets/images/album1.jpg',
+                                        height: 160.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    child: SizedBox(
+                                      height: 160.0,
+                                      width: 200.0,
+                                      child: Image.asset(
+                                        'assets/images/album2.jpg',
+                                        height: 160.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    child: SizedBox(
+                                      height: 160.0,
+                                      width: 200.0,
+                                      child: Image.asset(
+                                        'assets/images/album3.jpg',
+                                        height: 160.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    child: SizedBox(
+                                      height: 160.0,
+                                      width: 200.0,
+                                      child: Image.asset(
+                                        'assets/images/album4.jpg',
+                                        height: 160.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    child: SizedBox(
+                                      height: 160.0,
+                                      width: 200.0,
+                                      child: Image.asset(
+                                        'assets/images/album5.jpg',
+                                        height: 160.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
