@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int currentIndex = 0;
 
+  final PageController controller = PageController();
+
   List<String> images = [
     "https://i.ytimg.com/vi/PWADVtWyE9Q/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDcneFqOxHd28mCncQxT3jOErmk9Q",
     "https://i.ytimg.com/vi/djzDWMy1z7k/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCHwD_IA2ERzpZVxNvxCEOGr4fyTw",
@@ -54,8 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     "https://i.ytimg.com/vi/-nt_u4vo-DI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgUinltWhU-qqmgc_JroDLPt3OEg",
     "https://i.ytimg.com/vi/tqtZIyN_Alg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD4woxvyiNXgmSile7PLz7uoRPQOQ",
   ];
-
-  final PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -105,15 +105,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ChangeNotifierProvider<PageViewHolder>.value(
                         value: holder,
                         child: PageView.builder(
-                            controller: _controller,
-                            itemCount: 4,
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return MyPage(
-                                number: index.toDouble(),
-                                fraction: fraction,
-                              );
-                            }),
+                          controller: _controller,
+                          itemCount: 4,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return MyPage(
+                              number: index.toDouble(),
+                              fraction: fraction,
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
