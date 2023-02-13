@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_inappwebview: ^5.7.2+3
+  flutter_twitch_player: ^0.1.4
   url_launcher: ^6.1.9
   curved_labeled_navigation_bar: ^2.0.2
   provider: ^6.0.5

@@ -17,7 +17,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   List screens = [
     const MyHomePage(),
-    const TwitchLive(),
+    const TwitchLive(title: ""),
     const CurrentMusic(),
     const Playlist(),
     const Settings(),

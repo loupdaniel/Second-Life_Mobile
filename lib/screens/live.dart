@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_twitch_player/flutter_twitch_player.dart';
 
-class TwitchLive extends StatelessWidget {
-  const TwitchLive({super.key});
+class TwitchLive extends StatefulWidget {
+  const TwitchLive({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
+  State<TwitchLive> createState() => _TwitchLiveState();
+}
+
+class _TwitchLiveState extends State<TwitchLive> {
+  TwitchController twitchController = TwitchController();
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.amber,
-      body: Center(
-        child: Text(
-          'Twitch Live Screen',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-        ),
+    twitchController.onEnterFullscreen(() => print("Entered fullscreen"));
+    twitchController.onExitFullscreen(() => print("Exited fullscreen"));
+    twitchController.onStateChanged((state) => print(state));
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TwitchPlayerIFrame(
+              controller: twitchController,
+              channel: "sah_yang",
+              borderRadius: BorderRadius.circular(6),
+            ),
+          ),
+        ],
       ),
     );
   }

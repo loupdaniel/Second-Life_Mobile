@@ -78,6 +78,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inappwebview:
+    dependency: "direct main"
+    description:
+      name: flutter_inappwebview
+      sha256: f73505c792cf083d5566e1a94002311be497d984b5607f25be36d685cf6361cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.7.2+3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -91,6 +99,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_twitch_player:
+    dependency: "direct main"
+    description:
+      name: flutter_twitch_player
+      sha256: "768d42b0eeed58afdf453216e1c359d5376e3f24a75f0deee81fb3b4444c127e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
