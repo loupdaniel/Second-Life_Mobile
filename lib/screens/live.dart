@@ -29,7 +29,7 @@ class _TwitchLiveState extends State<TwitchLive> {
               offset: const Offset(-75, 185),
               child: const Text(
                 'Watch Live Streaming!',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Transform.translate(
