@@ -35,7 +35,7 @@ class _TwitchLiveState extends State<TwitchLive> {
             Transform.translate(
               offset: const Offset(0, 205),
               child: SizedBox(
-                height: 275, // Size of the Twitch screen
+                height: 270, // Size of the Twitch screen
                 child: PageView(
                   children: [
                     Padding(

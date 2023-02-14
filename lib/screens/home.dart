@@ -109,9 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           itemCount: 4,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return MyPage(
-                              number: index.toDouble(),
-                              fraction: fraction,
+                            return InkWell(
+                              //you should use InkWell for onTap or thing like that!!!
+                              onTap: () {
+                                print("Tapped central imageeee");
+                              },
+                              child: MyPage(
+                                number: index.toDouble(),
+                                fraction: fraction,
+                              ),
                             );
                           },
                         ),
@@ -153,15 +159,21 @@ class _MyHomePageState extends State<MyHomePage> {
                               });
                             },
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 35),
-                                child: SizedBox(
-                                  height: 100,
-                                  width: 400,
-                                  child: Image.network(
-                                    images[index % images.length],
-                                    fit: BoxFit.fill,
+                              return InkWell(
+                                //you should use InkWell for onTap or thing like that!!!
+                                onTap: () {
+                                  print("Tapped watch Videos Imageeeee");
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 35),
+                                  child: SizedBox(
+                                    height: 100,
+                                    width: 400,
+                                    child: Image.network(
+                                      images[index % images.length],
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                 ),
                               );
