@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:secondlife_mobile/PageViewHolder.dart';
 import 'package:provider/provider.dart';
+import 'package:secondlife_mobile/screens/artist_1.dart';
+import 'package:secondlife_mobile/screens/artist_2.dart';
+import 'package:secondlife_mobile/screens/artist_3.dart';
+import 'package:secondlife_mobile/screens/artist_4.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -109,16 +113,78 @@ class _MyHomePageState extends State<MyHomePage> {
                           itemCount: 4,
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return InkWell(
-                              //you should use InkWell for onTap or thing like that!!!
-                              onTap: () {
-                                print("Tapped central imageeee");
-                              },
-                              child: MyPage(
-                                number: index.toDouble(),
-                                fraction: fraction,
-                              ),
-                            );
+                            if (index == 0) {
+                              return InkWell(
+                                //you should use InkWell for onTap or thing like that!!!
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const FirstArtist(),
+                                    ),
+                                  );
+                                },
+                                child: MyPage(
+                                  number: index.toDouble(),
+                                  fraction: fraction,
+                                ),
+                              );
+                            }
+                            if (index == 1) {
+                              return InkWell(
+                                //you should use InkWell for onTap or thing like that!!!
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SecondArtist(),
+                                    ),
+                                  );
+                                },
+                                child: MyPage(
+                                  number: index.toDouble(),
+                                  fraction: fraction,
+                                ),
+                              );
+                            }
+                            if (index == 2) {
+                              return InkWell(
+                                //you should use InkWell for onTap or thing like that!!!
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ThirdArtist(),
+                                    ),
+                                  );
+                                },
+                                child: MyPage(
+                                  number: index.toDouble(),
+                                  fraction: fraction,
+                                ),
+                              );
+                            }
+                            if (index == 3) {
+                              return InkWell(
+                                //you should use InkWell for onTap or thing like that!!!
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FourthArtist(),
+                                    ),
+                                  );
+                                },
+                                child: MyPage(
+                                  number: index.toDouble(),
+                                  fraction: fraction,
+                                ),
+                              );
+                            } else {
+                              return const Text("Can't find anything");
+                            }
                           },
                         ),
                       ),
